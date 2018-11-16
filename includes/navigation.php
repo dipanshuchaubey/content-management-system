@@ -12,7 +12,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">Blog Posts</a>
+            <a class="navbar-brand" href="index.php"><img style="width: 50%; margin-top: -10px;" src="logo.svg"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

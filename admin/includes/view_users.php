@@ -18,7 +18,7 @@
       <?php
     global $connection;
 
-    $query = "SELECT * FROM users ";
+    $query = "SELECT * FROM users WHERE user_role != 'admin' ";
     $result = mysqli_query($connection, $query);
 
     while ($row = mysqli_fetch_assoc($result)) {

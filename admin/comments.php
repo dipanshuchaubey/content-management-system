@@ -54,22 +54,5 @@
                     }
 
                 ?>
-            <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
 
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
-    <!-- FOOTER -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- END FOOTER -->
-
-</body>
-
-</html>
-
+<?php include 'includes/footer.php'; ?>

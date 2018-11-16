@@ -6,10 +6,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="index.php">Admin</a>
+    <a class="navbar-brand" href="index.php"><img style="width: 50%; margin-top: -10px;" src="../logo.svg"></a>
 </div>
 <!-- Top Menu Items -->
+
 <ul class="nav navbar-right top-nav">
+    <li><a href="">Users Online: <span class="usersonline"></span></a></li>
     <li><a href="../">Back To Main Page</a></li>
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><?php echo " " . $_SESSION['firstname'] ." ". $_SESSION['lastname'] ." "; ?><b class="caret"></b></a>

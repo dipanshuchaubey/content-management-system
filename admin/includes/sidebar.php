@@ -21,6 +21,7 @@
         <li>
             <a href="comments.php"><i class="fa fa-fw fa-file"></i> Comments </a>
         </li>
+        <?php ?>
         <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#users"><i class="fa fa-fw fa-arrows-v"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="users" class="collapse">

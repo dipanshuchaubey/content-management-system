@@ -1,0 +1,16 @@
+#bulkOptionContainer {
+  padding: 0;
+  margin-bottom: 20px;
+  margin-top: -20px; 
+}
+
+#bulkOptionButtons {
+
+  margin-bottom: 20px;
+  margin-top: -20px;
+}
+
+.img-resp img {
+	width: 30%;
+	height: 20%;
+}

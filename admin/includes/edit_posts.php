@@ -1,84 +1,89 @@
 <?php
-    if(isset($_GET['edit_id'])) {
+    $post_author_name = $_SESSION['firstname'] ." ". $_SESSION['lastname'];
+    if ($_GET['edit_id']) {
+
         $edit_post_id = $_GET['edit_id'];
+    } else {
+        header("Location: ./users.php");
     }
 
-    $query = "SELECT * FROM posts WHERE post_id = $edit_post_id ";
-    $result = mysqli_query($connection, $query);
+    $query       =  "SELECT * FROM posts WHERE post_id = $edit_post_id ";
+    $result      =  mysqli_query($connection, $query);
 
-    while ($row = mysqli_fetch_assoc($result)) {
-        $post_id = $row['post_id'];
-        $post_title = $row['post_title'];
-        $post_author = $row['post_author'];
-        $post_status = $row['post_status'];
-        $post_image = $row['post_image'];
-        $post_tags = $row['post_tags'];
-        $post_category_id = $row['post_category_id'];
-        $post_content = $row['post_content'];
-        $post_date = $row['post_date'];
+    while ($row  =  mysqli_fetch_assoc($result)) {
 
+        $post_id                   =  $row['post_id'];
+        $post_title                =  $row['post_title'];
+        $post_author               =  $row['post_author'];
+        $post_status               =  $row['post_status'];
+        $post_image                =  $row['post_image'];
+        $post_tags                 =  $row['post_tags'];
+        $post_category_id          =  $row['post_category_id'];
+        $post_content              =  $row['post_content'];
+        $post_date                 =  $row['post_date'];
     }
 
     if(isset($_POST['update_post'])) { 
 
-        $updated_title = $_POST['updated_post_title'];
-        $updated_author = $_POST['updated_post_author'];
-        $updated_status = $_POST['updated_post_status'];
-        $updated_image = $_FILES['updated_post_image']['name'];
-        $updated_image_tmp = $_FILES['updated_post_image']['tmp_name'];
-        $updated_tags = $_POST['updated_post_tags'];
-        $update_post_category_id = $_POST['post_category'];
-        $updated_content = $_POST['updated_post_content'];
+        $updated_title             =  $_POST['updated_post_title'];
+        $updated_author            =  $post_author;
+        $updated_status            =  $_POST['updated_post_status'];
+        $updated_image             =  $_FILES['updated_post_image']['name'];
+        $updated_image_tmp         =  $_FILES['updated_post_image']['tmp_name'];
+        $updated_tags              =  $_POST['updated_post_tags'];
+        $update_post_category_id   =  $_POST['post_category'];
+        $updated_content           =  $_POST['updated_post_content'];
 
-        move_uploaded_file($updated_image_tmp, "./images/$updated_image");
+        move_uploaded_file($updated_image_tmp, "../common/images/$updated_image");
 
         if(empty($updated_image)) {
 
-            $query = "SELECT * FROM posts WHERE post_id = $edit_post_id ";
-            $select_image = mysqli_query($connection, $query);
+            $query        =  "SELECT * FROM posts WHERE post_id = $edit_post_id ";
+            $select_image =  mysqli_query($connection, $query);
 
-            while ($row = mysqli_fetch_assoc($select_image)) {
+            while ($row   =  mysqli_fetch_assoc($select_image)) {
                 $updated_image = $row['post_image'];
             }
         }
 
-        $update_query = "UPDATE posts SET ";
-        $update_query .= "post_title = '$updated_title', ";
-        $update_query .= "post_author = '$updated_author', ";
-        $update_query .= "post_date = now(), ";
-        $update_query .= "post_image = '$updated_image', ";
-        $update_query .= "post_content = '$updated_content', ";
-        $update_query .= "post_status = '$updated_status', ";
-        $update_query .= "post_category_id = '$update_post_category_id', ";
-        $update_query .= "post_tags = '$updated_tags' ";
-        $update_query .= "WHERE post_id = $edit_post_id ";
+        $update_query     =  "UPDATE posts SET ";
+        $update_query    .=  "post_title        =  '$updated_title', ";
+        $update_query    .=  "post_author       =  '$updated_author', ";
+        $update_query    .=  "post_date         =  now(), ";
+        $update_query    .=  "post_image        =  '$updated_image', ";
+        $update_query    .=  "post_content      =  '$updated_content', ";
+        $update_query    .=  "post_status       =  '$updated_status', ";
+        $update_query    .=  "post_category_id  =  '$update_post_category_id', ";
+        $update_query    .=  "post_tags         =  '$updated_tags' ";
+        $update_query    .=  "WHERE post_id     =   $edit_post_id ";
 
         $update_post = mysqli_query($connection, $update_query);
-        header("Location: posts.php?action=edit_post&edit_id=$edit_post_id");
-        exit();
         if(! $update_post) {
             echo "Error " . mysqli_error($connection);
+        } else {
+            echo "Post Updated! <a href='../post.php?read_id=$post_id'>View Post</a> Or <a href='posts.php'>Edit Another Post</a>";
+            header("Location: posts.php?action=edit_post&edit_id=$edit_post_id");
+            
         }
     }
 ?>
-<form action="" method="post" enctype="multipart/form-data">
+<form method="post">
 
     <h4>Post Title</h4>
     <div class="form-group">
         <input class="form-control" value="<?php echo $post_title; ?>" type="text" name="updated_post_title">
     </div>
-
-    <h4>Post Id</h4>
+    
     <div class="form-group">
-        <input class="form-control" value="<?php echo $post_id; ?>" readonly type="number" name="updated_post_id">
-    </div>
-
-    <h4>Post Author</h4>
-    <div class="form-group">
-        <input class="form-control" value="<?php echo $post_author; ?>" type="text" name="updated_post_author">
+        <h4>Post Id: <?php echo $post_id; ?></h4>
     </div>
 
     <div class="form-group">
+        <h4>Post Author : <?php echo $post_author; ?></h4>
+    </div>
+
+    <div class="form-group">
+        <h4>Post Category</h4>
         <select name="post_category" id="">
             <?php
                 $category_query = "SELECT * FROM blog_category";
@@ -97,30 +102,23 @@
     <h4>Post Status</h4>
     <div class="form-group">
         <select name="updated_post_status" id="">
-            <option value='<?php $post_status ?>'><?php echo "$post_status" ?></option>
+            <option value='<?php echo $post_status; ?>'><?php echo "$post_status" ?></option>
             <?php 
-            if ($post_status == 'draft') {
+            if ($post_status        ==  'draft') {
 
-                echo "<option value='published'>Published</option>";
+               echo "<option value='published'>Published</option>";
 
-            } elseif ($post_status == 'published') {
+            } elseif ($post_status  ==  'published') {
 
                 echo "<option value='draft'>Draft</option>";
             }
-            ?>
+            ?> 
         </select>
     </div>
 
-<!-- $post_status_query = "SELECT * FROM posts WHERE post_id = $edit_post_id ";
-            $post_status_result = mysqli_query($connection, $post_status_query);
-
-            while ($status_row = mysqli_fetch_assoc($post_status_result)) {
-                
-                $read_post_status = $status_row['post_status'];
-            } -->
     <h4>Post Image</h4>
     <div class="form-group">
-        <img class="img-responsive" style="width: 100px;" src="./images/<?php echo $post_image; ?>">
+        <img class="img-responsive" style="width: 100px;" src="../common/images/<?php echo $post_image; ?>">
         <br>
         <input type="file" name="updated_post_image">
     </div>

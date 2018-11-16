@@ -64,7 +64,7 @@
     <div class="form-group">
         <h4>User Role</h4>
         <select name="edit_user_role">
-            <option value='<?php $user_role; ?>'><?php echo $user_role; ?></option>
+            <option value='<?php echo $user_role; ?>'><?php echo $user_role; ?></option>
             <?php 
             if ($user_role == 'admin') {
                 echo "<option value='subscriber'>Subscriber</option>";

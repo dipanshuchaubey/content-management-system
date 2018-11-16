@@ -2,23 +2,22 @@
     if(isset($_POST['publish_post']))
         {
 
-            $post_title = $_POST['add_post_title'];
-            $post_author = $_POST['add_post_author'];
-            $post_status = $_POST['add_post_status'];
-            $post_tags = $_POST['add_post_tags'];
-            $post_content = $_POST['add_post_content'];
-            $post_category_id = $_POST['add_post_category'];
-            $post_image = $_FILES['add_post_image']['name'];
-            $post_image_temp = $_FILES['add_post_image']['tmp_name'];
-            move_uploaded_file($post_image_temp, "./images/$post_image");
+            $post_title        =    $_POST['add_post_title'];
+            $post_author       =    $_SESSION['firstname'] ." ". $_SESSION['lastname'];
+            $post_status       =    $_POST['add_post_status'];
+            $post_tags         =    $_POST['add_post_tags'];
+            $post_content      =    $_POST['add_post_content'];
+            $post_category_id  =    $_POST['add_post_category'];
+            $post_image        =    $_FILES['add_post_image']['name'];
+            $post_image_temp   =    $_FILES['add_post_image']['tmp_name'];
+            move_uploaded_file($post_image_temp, "../common/images/$post_image");
 
             $post_date = date('d-m-y');
             $post_comment_count = 0;
 
 
-            $query = "INSERT INTO posts( post_title, post_author, post_date, post_image, post_content, post_tags, post_category_id, post_comment_count, post_status) ";
-
-            $query .= "VALUES('{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_category_id}', '{$post_comment_count}', '{$post_status}' ) ";
+            $query  =  "INSERT INTO posts( post_title, post_author, post_date, post_image, post_content, post_tags, post_category_id, post_comment_count, post_status) ";
+            $query .=  "VALUES('{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_category_id}', '{$post_comment_count}', '{$post_status}' ) ";
             
             $result = mysqli_query($connection, $query);
 
@@ -37,9 +36,9 @@
         <input class="form-control" type="text" name="add_post_title">
     </div>
 
-    <h4>Post Author</h4>
+    
     <div class="form-group">
-        <input class="form-control" type="text" name="add_post_author">
+        <h4>Post Author : <?php echo $_SESSION['firstname'] ." ". $_SESSION['lastname']; ?></h4>
     </div>
 
     <h4>Post Category</h4>

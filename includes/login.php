@@ -36,8 +36,15 @@
             $_SESSION['username'] = $org_username;
             $_SESSION['user_role'] = $org_user_role;
             $_SESSION['time_count'] = time();
-            header("Location: ../admin");
 
+            if($org_user_role == "admin") {
+                
+                header("Location: ../admin");
+
+            } elseif($org_user_role == "subscriber") {
+
+                header("Location: ../user");
+            }
         } else {
             header("Location: ../index.php");
         }

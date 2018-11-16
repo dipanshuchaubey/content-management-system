@@ -1,5 +1,4 @@
 <?php include "includes/header.php" ?>
-
 <body>
 
     <div id="wrapper">
@@ -12,13 +11,13 @@
             <?php include "includes/sidebar.php" ?>
     <!--navbar-collapse -->
 
-    <!-- Time Counter -->
+     <!-- Time Counter -->
         <?php 
-        if (time() - $_SESSION['time_count'] > 60*5) {
-            header("Location: ../includes/logout.php");
-        } else {
-            $_SESSION['time_count'] = time();
-        }
+        // if (time() - $_SESSION['time_count'] > 60*5) {
+        //     header("Location: ../includes/logout.php");
+        // } else {
+        //     $_SESSION['time_count'] = time();
+        // }
         ?>
     <!--Time Counter -->
         </nav>
@@ -48,13 +47,13 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <?php
-                                        $post_count_query = "SELECT * FROM posts ";
-                                        $post_count_result = mysqli_query($connection, $post_count_query);
-                                        $post_count = mysqli_num_rows($post_count_result);
+                                        $post_count_query         =  "SELECT * FROM posts ";
+                                        $post_count_result        =  mysqli_query($connection, $post_count_query);
+                                        $post_count               =  mysqli_num_rows($post_count_result);
 
-                                        $draft_post_count_query = "SELECT * FROM posts WHERE post_status = 'draft' ";
-                                        $draft_post_count_result = mysqli_query($connection, $draft_post_count_query);
-                                        $draft_post_count = mysqli_num_rows($draft_post_count_result);
+                                        $draft_post_count_query   =  "SELECT * FROM posts WHERE post_status = 'draft' ";
+                                        $draft_post_count_result  =  mysqli_query($connection, $draft_post_count_query);
+                                        $draft_post_count         =  mysqli_num_rows($draft_post_count_result);
 
                                         echo "<div class='huge'>$post_count</div>";
                                         ?>
@@ -80,13 +79,13 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                      <?php
-                                        $comment_count_query = "SELECT * FROM post_comments ";
-                                        $comment_count_result = mysqli_query($connection, $comment_count_query);
-                                        $comment_count = mysqli_num_rows($comment_count_result);
+                                        $comment_count_query            =  "SELECT * FROM post_comments ";
+                                        $comment_count_result           =  mysqli_query($connection, $comment_count_query);
+                                        $comment_count                  =  mysqli_num_rows($comment_count_result);
 
-                                        $rejected_comment_count_query = "SELECT * FROM post_comments WHERE comment_status = 'Rejected' ";
-                                        $rejected_comment_count_result = mysqli_query($connection, $rejected_comment_count_query);
-                                        $rejected_comment_count = mysqli_num_rows($rejected_comment_count_result);
+                                        $rejected_comment_count_query   =  "SELECT * FROM post_comments WHERE comment_status = 'Rejected' ";
+                                        $rejected_comment_count_result  =  mysqli_query($connection, $rejected_comment_count_query);
+                                        $rejected_comment_count         =  mysqli_num_rows($rejected_comment_count_result);
 
                                         echo "<div class='huge'>$comment_count</div>";
                                      ?>
@@ -112,9 +111,9 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                     <?php
-                                        $users_count_query = "SELECT * FROM users ";
-                                        $users_count_result = mysqli_query($connection, $users_count_query);
-                                        $users_count = mysqli_num_rows($users_count_result);
+                                        $users_count_query   =  "SELECT * FROM users ";
+                                        $users_count_result  =  mysqli_query($connection, $users_count_query);
+                                        $users_count         =  mysqli_num_rows($users_count_result);
 
                                         echo "<div class='huge'>$users_count</div>";
                                     ?>
@@ -140,10 +139,9 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <?php
-                                            $category_count_query = "SELECT * FROM blog_category ";
-                                            $category_count_result = mysqli_query($connection, $category_count_query);
-
-                                            $category_count = mysqli_num_rows($category_count_result);
+                                            $category_count_query   =  "SELECT * FROM blog_category ";
+                                            $category_count_result  =  mysqli_query($connection, $category_count_query);
+                                            $category_count         =  mysqli_num_rows($category_count_result);
 
                                             echo "<div class='huge'>$category_count</div>";
                                         ?>
@@ -209,10 +207,4 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- FOOTER -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- END FOOTER -->
-
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

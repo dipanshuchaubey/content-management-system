@@ -41,29 +41,28 @@
     $profile_result = mysqli_query($connection, $profile_query);
 
     while ($row = mysqli_fetch_array($profile_result)) {
-        $user_password = $row['user_password'];
-        $user_firstname = $row['user_firstname'];
-        $user_lastname = $row['user_lastname'];
-        $user_email = $row['user_email'];
-        $user_role = $row['user_role'];
+        
+        $user_password    =  $row['user_password'];
+        $user_firstname   =  $row['user_firstname'];
+        $user_lastname    =  $row['user_lastname'];
+        $user_email       =  $row['user_email'];
+        $user_role        =  $row['user_role'];
     }
 
     if(isset($_POST['update_user_profile'])) {
 
-        $edit_user_firstname = $_POST['edit_user_firstname'];
-        $edit_user_lastname = $_POST['edit_user_lastname'];
-        $edit_user_email = $_POST['edit_user_email'];
-        $edit_user_role = $_POST['edit_user_role'];
-        $edit_username = $_POST['username'];
-        $edit_user_password = $_POST['edit_user_password'];
+        $edit_user_firstname   =  $_POST['edit_user_firstname'];
+        $edit_user_lastname    =  $_POST['edit_user_lastname'];
+        $edit_user_email       =  $_POST['edit_user_email'];
+        $edit_user_role        =  $_POST['edit_user_role'];
+        $edit_username         =  $_POST['username'];
 
-        $edit_user_query = "UPDATE users SET ";
-        $edit_user_query .= "user_firstname = '{$edit_user_firstname}', ";
-        $edit_user_query .= "user_lastname = '{$edit_user_lastname}', ";
-        $edit_user_query .= "user_email = '{$edit_user_email}', "; 
-        $edit_user_query .= "user_role = '{$edit_user_role}', "; 
-        $edit_user_query .= "user_password = '{$edit_user_password}' ";
-        $edit_user_query .= "WHERE username = '{$edit_username}' ";
+        $edit_user_query   =  "UPDATE users SET ";
+        $edit_user_query  .=  "user_firstname = '{$edit_user_firstname}', ";
+        $edit_user_query  .=  "user_lastname = '{$edit_user_lastname}', ";
+        $edit_user_query  .=  "user_email = '{$edit_user_email}', "; 
+        $edit_user_query  .=  "user_role = '{$edit_user_role}' "; 
+        $edit_user_query  .=  "WHERE username = '{$edit_username}' ";
         
         $edit_user_result = mysqli_query($connection, $edit_user_query);
 
@@ -98,7 +97,7 @@
     <div class="form-group">
         <h4>User Role</h4>
         <select name="edit_user_role">
-            <option value="<?php $user_role; ?>"><?php echo $user_role; ?></option>
+            <option value="<?php echo $user_role; ?>"><?php echo $user_role; ?></option>
             <?php 
             if ($user_role == 'admin') {
                 echo "<option value='subscriber'>Subscriber</option>";
@@ -195,11 +194,5 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- FOOTER -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- END FOOTER -->
-
-</body>
-</html>
+    
+<?php include 'includes/footer.php'; ?>
