@@ -1,6 +1,11 @@
 # Content-Management-System
 📎 Building a blog page using PHP 7 & MySQL
 
+## Screenshots
+![Admin Dashboard](https://user-images.githubusercontent.com/41301181/50610288-78a0e780-0ef8-11e9-970f-204fcbcbb4e5.JPG)
+
+![Landing Page](https://user-images.githubusercontent.com/41301181/50610291-7b9bd800-0ef8-11e9-9d64-cef7edcc86c3.JPG)
+
 ## Contribution
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
