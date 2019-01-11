@@ -27,6 +27,7 @@
 
                 $count = mysqli_num_rows($search_query);
 
+
                 if ($count == 0) {
                     
                     echo "<h3>No Result</h3>";
@@ -69,6 +70,7 @@
                 }
                 }
                 ?>
+                
                 
             </div>
             <!-- Blog Sidebar Widgets Column -->
